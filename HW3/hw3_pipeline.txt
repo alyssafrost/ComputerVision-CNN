@@ -1,0 +1,5 @@
+width:  4290
+height: 2856
+type:  uint16
+minimum pixel: 15303
+maximum pixel: 2002
