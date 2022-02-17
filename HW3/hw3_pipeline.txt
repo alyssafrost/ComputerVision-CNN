@@ -3,3 +3,5 @@ height: 2856
 type:  uint16
 minimum pixel: 15303
 maximum pixel: 2002
+Chosen Bayer Mosaic: rggb 
+Brightening factor is by 4. (See function at bottom of matlab file.) 
