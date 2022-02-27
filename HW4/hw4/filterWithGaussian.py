@@ -1,16 +1,22 @@
-def filterWithGaussian(n):
-    """Build a Pascal triangle.
-    Params: n (int): # of rows of the Pascal triangle to define
-    Returns: (np.ndarray of shape (n,n)) Pascal triangle P, where P[i,j] = i choose j for j<=i
-    """
+import numpy as np
+import cv2 as cv
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import matplotlib.image as im
 
-    pass
 
-    # function filterWithGaussian (im)
+def filterWithGaussian(image):
+    """Apply the gaussian filter to an image
+    Params: (ndarray): An image to run the provided filter
+    Displays: An image to be blurred on each step through"""
 
-    # for sigma = 1:3:10
-    # filter = fspecial ('gaussian', 31, sigma); % build filter
-    # smoothed_im = imfilter (im, filter);       % apply filter
-    # imshow (smoothed_im);
-    # pause;
-    # end
+    for sigma in range(1, 11, 3):
+        smoothed_image = cv.GaussianBlur(image, [31, 31], sigma)
+        cv.imshow("Smoothed", smoothed_image)
+        cv.waitKey(0)
+
+
+if __name__ == "__main__":
+    image = im.imread("graypeppers.jpg")
+    filterWithGaussian(image)
+    cv.destroyAllWindows()
