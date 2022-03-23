@@ -45,13 +45,17 @@ function [H, theta, rho] = hough_lines_acc (BW, varargin)
    
      % rho: distance values, correspond to rows of H
      rho = linspace(-nRho * rhoResolution, nRho * rhoResolution, nRho);
+     % try
+     %-360, 360; array of 1/720 
      % -diagonal to +diagonal
      
 
      % the range of theta is -90 < 0 < 90, and the angle is theta+90 w/
      % respect to the x-axis
      % theta: angle values, correspond to columns of H
-     theta = linspace(-90, 90, ceil(90/thetaResolution + 1));
+     theta = linspace(-90, 90, ceil(90/thetaResolution + 1)); % I think this would be thetaStep
+     % try
+     % (-90:thetaStep:90);
      %define some legnth of the two for your hough transform matrix of rho
      %* theta
      H_matrix = (length(rho)); length(theta); % do these need to be inti as zeros?
@@ -61,7 +65,7 @@ function [H, theta, rho] = hough_lines_acc (BW, varargin)
             % if your image is (y, x) (down, then right)
             if BW(y , x)
                 x0 = (x - 1) * cos(theta * pi/180) + (y - 1) * sin(theta * pi/180);
-                x0 = round(x0/rhoStep) + nRho + 1;
+                % Try using without the rounding x0 = round(x0/rhoStep) + nRho + 1;
                 for i = 1:length(theta * pi/180)
                     H_matrix(x0(i), i) = H_matrix(x0(i), i) + 1;
                 end
